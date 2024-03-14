@@ -983,7 +983,7 @@ export function Settings() {
                           }
                         ></input>
                       </ListItem>
-                      <ListItem
+                      {/* <ListItem
                         title={Locale.Settings.Access.OpenAI.ApiKey.Title}
                         subTitle={Locale.Settings.Access.OpenAI.ApiKey.SubTitle}
                       >
@@ -1000,7 +1000,7 @@ export function Settings() {
                             );
                           }}
                         />
-                      </ListItem>
+                      </ListItem> */}
                     </>
                   ) : accessStore.provider === "Azure" ? (
                     <>

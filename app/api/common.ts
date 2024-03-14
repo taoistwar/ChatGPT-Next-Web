@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSideConfig } from "../config/server";
-import { DEFAULT_MODELS, OPENAI_BASE_URL, GEMINI_BASE_URL } from "../constant";
-import { collectModelTable } from "../utils/model";
 import { makeAzurePath } from "../azure";
+import { getServerSideConfig } from "../config/server";
+import { DEFAULT_MODELS, OPENAI_BASE_URL } from "../constant";
+import { collectModelTable } from "../utils/model";
 
 const serverConfig = getServerSideConfig();
 
@@ -20,6 +20,9 @@ export async function requestOpenai(req: NextRequest) {
         .trim() ?? "";
 
     authHeaderName = "api-key";
+  } else if (serverConfig.apiKey) {
+    authValue = `Bearer ${serverConfig.apiKey}`;
+    authHeaderName = "Authorization";
   } else {
     authValue = req.headers.get("Authorization") ?? "";
     authHeaderName = "Authorization";
